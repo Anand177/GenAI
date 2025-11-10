@@ -44,7 +44,7 @@ def create_google_llm(model='gemini-flash-latest', args={}):
 
 
 
-
+# Create Google API Key @ https://aistudio.google.com/app/projects
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 sys.path.append('../')
 
@@ -58,7 +58,7 @@ llm=create_google_llm(model="gemini-flash-latest")
 print(llm)
 
 
-query = "What do you know about Agentic AI? Explain in pirate language."
+query = "How LLM works"
 
 response = llm.invoke( query)
 
