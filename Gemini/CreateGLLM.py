@@ -46,7 +46,6 @@ def create_google_llm(model='gemini-flash-latest', args={}):
 
 # Create Google API Key @ https://aistudio.google.com/app/projects
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
-sys.path.append('../')
 
 GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
 print(GOOGLE_API_KEY)
