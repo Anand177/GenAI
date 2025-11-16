@@ -1,5 +1,6 @@
-from langchain.prompts import PromptTemplate, FewShotPromptTemplate
+from langchain_core.prompts import PromptTemplate, FewShotPromptTemplate
 from langchain_core.example_selectors import LengthBasedExampleSelector
+
 
 examples = [
     {   "question" : "A baker made 8 chocolate chip cookies and 6 oatmeal cookies. How many cookies did he make in total",
@@ -21,8 +22,8 @@ examples = [
 
 # Create template for examples
 examples_template = """
-Question: {question}
-Answer: {answer}
+Example Question: {question}
+Example Answer: {answer}
 """
 
 prompt_template_example = PromptTemplate(
@@ -36,7 +37,7 @@ few_shot_prompt = FewShotPromptTemplate(
     examples=examples,
     input_variables=["input"],
     suffix="Question: {input}",
-    prefix="Answer the following questions based on the examples provided:\n\n"
+    prefix="Answer the question based on the examples provided:\n\n"
 )
 
 ques = "If you have 15 marbles and you give 5 to your friend, how many marbles do you have left?"
@@ -63,3 +64,22 @@ length_based_example_selector = FewShotPromptTemplate(
 
 final_prompt = length_based_example_selector.format(input=ques)
 print(final_prompt)
+
+
+
+from huggingface_hub import InferenceClient
+import os
+
+HF_API_KEY=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+client = InferenceClient(api_key=HF_API_KEY)
+
+msg = [{"role": "user", "content": final_prompt}]
+
+completion = client.chat.completions.create(
+    model="openai/gpt-oss-20b",
+    messages=msg,
+    temperature=0.7
+)
+for choice in completion.choices:
+    print("Message Content: ", choice.message.content)
+    print("Message Reasoning: ", choice.message.reasoning)
