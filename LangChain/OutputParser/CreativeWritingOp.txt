@@ -1,0 +1,92 @@
+PS C:\Learning\Python\GenAI> & C:/Users/anand/anaconda3/envs/gen-ai-app-dev-course/python.exe c:/Learning/Python/GenAI/LangChain/OutputParser/CreativeWriting2.py
+Total plans: 3
+
+============================================================
+📋 PLAN 1
+============================================================
+1. Determine a fitting title that incorporates the required phrase "NextGen EV Car."
+2. Draft the opening sentence using the required words "innovative" and "cutting-edge" while introducing the product.
+3. Develop a focused sentence detailing the benefit of the long-range battery feature.
+4. Integrate the crucial fast charging capability into the next sequential sentence.
+5. Write a transitional sentence focusing on passenger protection and advanced technology.
+6. Specifically highlight the advanced safety systems integrated into the vehicle design.
+7. Ensure the overall passage remains concise and under the strict 200-word limit.
+8. Craft the final sentence, embedding the mandatory website reference: jumboev.com.
+============================================================
+📋 PLAN 2
+============================================================
+1. Establish a clear content outline, dedicating 3-4 sentences for feature descriptions.
+2. Draft the title, ensuring "NextGen EV Car" is prominently included.
+3. Write the opening line strictly enforcing the "innovative" and "cutting-edge" word requirements.  
+4. Allocate space to describe the long-range battery feature concisely and appealingly.
+5. Dedicate a separate sentence to emphasizing the advanced safety protocols built into the structure.
+6. Include a powerful line detailing the speed and convenience of the fast charging system.
+7. Write a sentence focusing on the vehicle's overall luxury and comfort, using remaining word count.
+8. Review the drafted content immediately to confirm the total word count is below 200 words.        
+9. Finalize the passage by drafting the mandated concluding call-to-action mentioning jumboev.com.   
+============================================================
+📋 PLAN 3
+============================================================
+1. Construct a powerful title utilizing the required "NextGen EV Car" phrase.
+2. Begin writing with the mandatory "innovative" and "cutting-edge" lead sentence introduction.      
+3. Write a sentence that strongly pairs the massive long-range battery capability with minimal range anxiety.
+4. Integrate the concept of efficiency by following up immediately with the benefit of fast charging.
+5. Develop a robust sentence dedicated entirely to the vehicle's comprehensive advanced safety features.
+6. Add a sentence emphasizing the utility and spaciousness inherent in the Jumbo design.
+7. Check the total word count frequently to guarantee adherence to the sub-200-word restriction.     
+8. Proofread the entire draft for compelling marketing tone and consistency.
+9. Conclude the passage smoothly with the required directional prompt to the official website jumboev.com.
+
+============================================================
+Selected Plan: 3
+Steps:
+1. Construct a powerful title utilizing the required "NextGen EV Car" phrase.
+2. Begin writing with the mandatory "innovative" and "cutting-edge" lead sentence introduction.      
+3. Write a sentence that strongly pairs the massive long-range battery capability with minimal range anxiety.
+4. Integrate the concept of efficiency by following up immediately with the benefit of fast charging.
+5. Develop a robust sentence dedicated entirely to the vehicle's comprehensive advanced safety features.
+6. Add a sentence emphasizing the utility and spaciousness inherent in the Jumbo design.
+7. Check the total word count frequently to guarantee adherence to the sub-200-word restriction.     
+8. Proofread the entire draft for compelling marketing tone and consistency.
+9. Conclude the passage smoothly with the required directional prompt to the official website jumboev.com.
+Reason: Plan 3 is the superior choice because it not only meticulously covers every mandated constraint (Title, opening sentence words, required features, word count, and website reference) but also applies the strongest marketing strategy. By explicitly linking core features (long-range battery, fast charging) to immediate consumer benefits (reduced range anxiety, efficiency) early in the writing process (Steps 3 & 4), the resulting content will be highly compelling. Furthermore, Step 6 introduces contextually relevant information (utility and spaciousness, aligning with the 'Jumbo' product name) rather than abstract features, ensuring every word serves the product's identity while efficiently managing the strict sub-200-word limit.
+============================================================
+
+Generated Passages:
+
+Passage 1:
+Title: The Apex NextGen EV Car: Redefining Electric Travel
+Content: Introducing the Jumbo EV Car, an innovative machine built on cutting-edge electric architecture. Its revolutionary long-range battery guarantees monumental distance, effectively eliminating range anxiety on even the longest cross-country journeys. When you do need a boost, sophisticated fast charging capability replenishes power quickly, keeping downtime minimal. Protection is paramount, which is why the platform integrates advanced safety systems utilizing predictive AI and 360-degree shielding. This vehicle doesn't compromise—enjoy generous interior dimensions and massive storage designed for ultimate utility. Secure your reservation and explore the full specifications today at jumboev.com.
+
+------------------------------------------------------------
+
+Passage 2:
+Title: Jumbo EV: The Ultimate NextGen EV Car Experience
+Content: Experience the future of mobility with the Jumbo EV Car, a triumph of innovative engineering and cutting-edge design. Powering your adventures is an industry-leading long-range battery system, granting unparalleled mileage and erasing concerns about daily commute range anxiety. Coupled with its ultrafast charging feature, you spend less time plugged in and more time dominating the road. Cruising confidence comes standard thanks to our comprehensive suite of advanced safety features, which constantly monitors surroundings to ensure occupant protection. The 'Jumbo' name speaks to its generous capacity—perfect for families, gear, and everything life throws your way, offering immense spacious utility. Don't miss the next revolution in electric travel. Learn more about performance at jumboev.com.
+
+------------------------------------------------------------
+
+Passage 3:
+Title: The Bold NextGen EV Car: Jumbo EV Redefines Size
+Content: The introduction of the Jumbo EV Car represents truly innovative thinking applied to a cutting-edge electric vehicle platform. Venture further than ever before; our colossal long-range battery capacity destroys traditional constraints, assuring travel with zero range anxiety. Integrated high-speed fast charging technology minimizes stops and maximizes momentum. Driving security is paramount, upheld by advanced safety systems featuring real-time environmental processing and robust collision prevention technology. As a true Jumbo vehicle, expect vast, luxurious interior spaciousness and practicality for both passengers and significant cargo. Discover how the Jumbo EV Car can elevate your journeys; visit jumboev.com today.
+
+------------------------------------------------------------
+
+============================================================
+FINAL SELECTION
+============================================================
+Selected Passage: 2
+
+Reason: Passage 2 stands out due to its superior focus on consumer benefits, emotional engagement, and masterful integration of the product's primary unique selling proposition (USP) represented by the 'Jumbo' name. While all passages adhere perfectly to the structural requirements, Passage 2 uses more aspirational language ('Experience the future,' 'triumph of innovative engineering') and immediately translates technical features into user freedom and empowerment ('erasing concerns about daily commute range anxiety,' 'more time dominating the road'). Crucially, it dedicates strong copy to connecting the vehicle's name to practical utility—something essential for a 'Jumbo' car marketed towards versatile use or families. This balance of cutting-edge technology and real-world utility makes Passage 2 the most persuasive piece of marketing copy.
+
+Title: Jumbo EV: The Ultimate NextGen EV Car Experience
+
+Content: Experience the future of mobility with the Jumbo EV Car, a triumph of innovative engineering and cutting-edge design. Powering your adventures is an industry-leading long-range battery system, granting unparalleled mileage and erasing concerns about daily commute range anxiety. Coupled with its ultrafast charging feature, you spend less time plugged in and more time dominating the road. Cruising confidence comes standard thanks to our comprehensive suite of advanced safety features, which constantly monitors surroundings to ensure occupant protection. The 'Jumbo' name speaks to its generous capacity—perfect for families, gear, and everything life throws your way, offering immense spacious utility. Don't miss the next revolution in electric travel. Learn more about performance at jumboev.com.
+
+Strengths:
+  - Aspirational and engaging opening line that focuses on the consumer 'Experience.'
+  - Successfully integrates the product's 'Jumbo' size into the value proposition, emphasizing practical utility for life and families.
+  - Efficiently covers the required features while linking them directly to time-saving benefits ('less time plugged in') and driver confidence.
+  - The vocabulary is vibrant and persuasive ('industry-leading,' 'ultrafast,' 'dominating the road').
+  - Title ('The Ultimate NextGen EV Car Experience') is highly aspirational and sets a high benchmark for the content that follows.
+PS C:\Learning\Python\GenAI> 
