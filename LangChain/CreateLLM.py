@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from langchain_google_genai import GoogleGenerativeAI
 from langchain_huggingface.llms.huggingface_endpoint import HuggingFaceEndpoint
 import os
 
