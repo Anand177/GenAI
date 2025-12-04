@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 from langchain import PromptTemplate
-from langchain.chains.prompt_selector import ConditionalPromptSelector
+from langchain_classic.chains.prompt_selector import ConditionalPromptSelector
 
 from langchain_community.llms.ai21 import AI21
 from langchain_community.llms.cohere import Cohere

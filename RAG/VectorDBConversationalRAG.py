@@ -5,6 +5,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
+
 # langchain Classic is supposedly decommissioned. However latest packsges aren't
 # working. Latest alternatives are commented below
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
@@ -22,7 +23,6 @@ load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 
 ##Using URL Loaded by ChromaDbUrlLoader.py
-
 model_name="sentence-transformers/all-MiniLM-L6-v2"
 persist_directory="C:/Learning/chromaDB/blogs"
 

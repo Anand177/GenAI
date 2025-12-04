@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Anand",
+        "userid" : "anandvasantharajan",
+        "city_of_residence": "Chennai",
+        "state_of_residence": "Tamil Nadu",
+        "country_of_residence": "India",
+        "profession": "Software Engineer",
+        "company": "Ford Motor Company",
+        "hobby": [
+            "photography",
+            "Kick-Boxing"
+        ]
+    },
+    {
+        "name": "Kumar",
+        "userid" : "kumarhere",
+        "city_of_residence": "Coimbatore",
+        "state_of_residence": "Tamil Nadu",
+        "country_of_residence": "India",
+        "profession": "Mechanical Engineer",
+        "company": "Pricol Limited",
+        "hobby": [
+            "Music",
+            "Reading"
+        ]
+    },
+    {
+        "name": "Murugan",
+        "userid" : "murushanmug",
+        "city_of_residence": "Hosur",
+        "state_of_residence": "Tamil Nadu",
+        "country_of_residence": "India",
+        "profession": "Electronical Engineer",
+        "company": "Tata Electronics Limited",
+        "hobby": [
+            "Fitness",
+            "Foodie"
+        ]
+    },
+    {
+        "name": "Subash",
+        "userid" : "hellosubash",
+        "city_of_residence": "Kotkata",
+        "state_of_residence": "West Bengal",
+        "country_of_residence": "India",
+        "profession": "Food Safety Officer",
+        "company": "Britannia",
+        "hobby": [
+            "trekking",
+            "reading"
+        ]
+    }
+]

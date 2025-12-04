@@ -1,5 +1,5 @@
 import random
-from langchain.prompts import PromptTemplate
+from langchain_classic.prompts import PromptTemplate
 
 instruction_template = " You are a {subject} teacher for {grade_level} students."
 

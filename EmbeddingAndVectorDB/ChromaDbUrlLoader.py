@@ -5,13 +5,15 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 llm_url="https://en.wikipedia.org/wiki/Large_language_model"
 rag_url="https://en.wikipedia.org/wiki/Retrieval-augmented_generation"
+gemini_url="https://en.wikipedia.org/wiki/Gemini_(language_model)"
+bert_url="https://en.wikipedia.org/wiki/BERT_(language_model)"
 
 #Loading couple of Blogs
-loader=WebBaseLoader(web_paths=(llm_url, rag_url))
+loader=WebBaseLoader(web_paths=(llm_url, rag_url, gemini_url, bert_url))
 docs=loader.load()
 
-chunk_size=600
-chunk_overlap=100
+chunk_size=300
+chunk_overlap=50
 
 text_splitter=RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
 chunked_docs=text_splitter.split_documents(docs)
