@@ -1,0 +1,41 @@
+1. GITHUB_REPOSITORY (The Easiest Part)
+The repository name is simply the owner's username followed by the repository name, separated by a slash.
+Value: Anand177/GenAI
+2. GITHUB_APP_ID and GITHUB_APP_PRIVATE_KEY (The Secure Part)
+The GITHUB_APP_ID (a number) and the GITHUB_APP_PRIVATE_KEY (the contents of the .pem file) are private credentials that you must generate within your GitHub account settings. These credentials grant the LangChain Toolkit (or any LLM agent) the secure authorization it needs to read from and write to your repository.
+Here are the step-by-step instructions for creating the GitHub App:
+Step 1: Navigate to GitHub Developer Settings
+1.	Log in to your GitHub account.
+2.	Click on your profile picture (top right) and select Settings.
+3.	In the left sidebar, click on Developer settings (usually at the very bottom).
+4.	Click on GitHub Apps.
+Step 2: Create a New GitHub App
+1.	Click the New GitHub App button.
+2.	Fill in the details:
+o	GitHub App name: Choose a descriptive name (e.g., "LangChainAgent").
+o	Homepage URL: You can use your repository URL (https://github.com/Anand177/GenAI) or your personal website.
+o	Webhook URL: You can leave this blank (uncheck the "Active" box for webhooks) unless your specific agent workflow requires webhooks.
+Step 3: Configure Permissions
+This step is crucial for the toolkit to function. You must grant the permissions needed for the actions the tools perform (e.g., reading files, creating issues).
+Category	Permission Level	Tools Enabled
+Contents	Read and write	Create File, Read File, Update File, Delete File
+Issues	Read and write	Get Issues, Comment on Issue
+Pull requests	Read and write	Create Pull Request, Get Pull Request
+Metadata	Read-only	Required for general repository information.
+Step 4: Finalize and Generate the Private Key
+1.	Set "Where can this GitHub App be installed?" to "Only on this account" (recommended for personal repos).
+2.	Click the Create GitHub App button at the bottom.
+3.	On the App's configuration page:
+o	Locate the App ID. This number is your GITHUB_APP_ID.
+o	Scroll down to the "Private keys" section and click Generate a private key. A .pem file will download to your computer.
+Step 5: Get the Private Key Content
+The GITHUB_APP_PRIVATE_KEY environment variable expects the content of the .pem file, not the file path itself (though the LangChain wrapper can sometimes handle a file path).
+1.	Open the downloaded .pem file using a text editor (like VS Code, Notepad, or TextEdit).
+2.	Copy the entire content, including the header (-----BEGIN RSA PRIVATE KEY-----) and the footer (-----END RSA PRIVATE KEY-----).
+3.	This entire copied string is your GITHUB_APP_PRIVATE_KEY.
+Step 6: Install the App on Your Repository
+1.	In the left sidebar of your App's configuration page, click Install App.
+2.	Click Install next to your user account.
+3.	Select the GenAI repository (or "All repositories" if you prefer) and confirm the installation.
+Once you have these three values—the repository string, the App ID, and the private key content—you can securely initialize the GitHub Toolkit.
+

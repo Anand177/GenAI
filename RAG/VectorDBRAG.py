@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
 
-from langchain_community.document_loaders import WebBaseLoader
 from langchain_chroma import Chroma
-from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_openai import ChatOpenAI
