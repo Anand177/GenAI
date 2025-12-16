@@ -1,0 +1,87 @@
+PS C:\Learning\Python\GenAI> & C:/Users/anand/anaconda3/envs/genai-stable/python.exe c:/Learning/Python/GenAI/AgenticRAG/MultiStepAgent.py
+[
+    {
+        "name": "wikipedia",
+        "description": "A wrapper around Wikipedia. Useful for when you need to answer general questions about people, places, companies, facts, historical events, or other subjects. Input should be a search query.",
+        "arguments": [
+            {
+                "input": "input"
+            }
+        ],
+        "response": "search results"
+    },
+    {
+        "name": "tavily",
+        "description": "A search engine optimized for comprehensive, accurate, and trusted results. Useful for when you need to answer questions about current events. It not only retrieves URLs and snippets, but offers advanced search depths, domain management, time range filters, and image search, this tool delivers real-time, accurate, and citation-backed results.Input should be a search query.",
+        "arguments": [
+            {
+                "input": "input"
+            }
+        ],
+        "response": "search results"
+    }
+]
+Iteration --> 1
+--------------------------------------------------
+LLM Response --> {
+    "actions": [
+        {
+            "action": "wikipedia",
+            "arguments": {
+                "input": "Virat Kohli date of birth"
+            }
+        }
+    ],
+    "scratchpad": {
+        "thought": "I need to find Virat Kohli's date of birth first to determine which 50 over Cricket World Cup was the champion when he was born. I will use the wikipedia tool.",
+        "action": "wikipedia",
+        "observations": "No observations yet."
+    }
+}
+Iteration --> 2
+--------------------------------------------------
+LLM Response --> {
+    "actions": [
+        {
+            "action": "tavily",
+            "arguments": {
+                "input": "Virat Kohli date of birth"
+            }
+        }
+    ],
+    "scratchpad": {
+        "thought": "The initial Wikipedia search for 'Virat Kohli date of birth' did not yield his birth date directly. I need this information to determine the relevant Cricket World Cup year. I will now use the Tavily search engine for a quick and accurate fact retrieval of his date of birth.",
+        "action": "tavily",
+        "observations": "The previous Wikipedia search results did not contain Virat Kohli's date of birth."
+    }
+}
+Iteration --> 3
+--------------------------------------------------
+LLM Response --> {
+    "actions": [
+        {
+            "action": "wikipedia",
+            "arguments": {
+                "input": "1987 Cricket World Cup winner"
+            }
+        }
+    ],
+    "scratchpad": {
+        "thought": "I have determined Virat Kohli's date of birth is November 5, 1988. The 50 over Cricket World Cup is typically held every four years. The last tournament before his birth would have been the 1987 Cricket World Cup. I need to find the winner of that tournament. I will use Wikipedia for this historical fact.",
+        "action": "wikipedia",
+        "observations": "Virat Kohli's date of birth is Nov 05, 1988."
+    }
+}
+Iteration --> 4
+--------------------------------------------------
+LLM Response --> {
+    "answer": "The team that was the cricket 50 over World Cup champion when Virat Kohli was born (November 5, 1988) was Australia, who won the 1987 Cricket World Cup.",
+    "scratchpad": {
+        "thought": "I have successfully determined Virat Kohli's date of birth (November 5, 1988) and identified the relevant 50 over Cricket World Cup as the 1987 tournament, which concluded on November 8, 1987. The Wikipedia search for '1987 Cricket World Cup winner' clearly states that Australia won the competition. I now have all the necessary information to answer the question.",
+        "action": "wikipedia",
+        "observations": "The 1987 Cricket World Cup was won by Australia, who defeated England in the final. This tournament was held from 8 October to 8 November 1987, prior to Virat Kohli's birth on November 5, 1988."
+    }
+}
+Answer :  The team that was the cricket 50 over World Cup champion when Virat Kohli was born (November 5, 1988) was Australia, who won the 1987 Cricket World Cup.
+Stop reason :  ANSWER
+PS C:\Learning\Python\GenAI> 
