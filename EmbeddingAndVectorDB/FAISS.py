@@ -3,6 +3,8 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 import faiss
 import numpy as np
+import os
+os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 
@@ -52,7 +54,9 @@ doc_to_index = [
 
 #Embedding list
 doc_embeddings = embeddings_model.embed_documents(doc_to_index)
+print(doc_embeddings[0])
 doc_embeddings_numpy = np.array(doc_embeddings).astype(np.float32)
+print(doc_embeddings_numpy)
 
 embedding_dimension = len(doc_embeddings[0])
 
