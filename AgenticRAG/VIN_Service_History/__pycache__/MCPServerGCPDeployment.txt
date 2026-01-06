@@ -1,0 +1,138 @@
+Option 1: Cloud Run (Recommended for HTTP/SSE)
+Cloud Run is best for stateless, containerized services.
+
+Step 1: Convert MCP to HTTP Endpoint
+FastMCP needs to be wrapped for HTTP. Create app.py:
+
+python MCP Server Code
+from fastmcp import FastMCP
+from BqVinOuery import query_bq
+import json
+from flask import Flask, request, jsonify
+import sys
+
+app = Flask(__name__)
+mcp = FastMCP("VIN Service History")
+
+@mcp.tool()
+def vin_service_history(vin: str):
+    """
+    Query Vehicle Service Information based on VIN
+    
+    Args:
+        vin: VIN number that can be up to 17 characters long 
+    
+    Returns:
+        Vehicle Service Information for the VIN 
+    """
+    try:
+        data = query_bq(vin)
+        return {"Status": "Success", "data": data}
+    except Exception as e:
+        return {"Status": "Failed", "error": str(e)}
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "healthy"}), 200
+
+@app.route('/tools', methods=['GET'])
+def list_tools():
+    """List available MCP tools"""
+    tools = [
+        {
+            "name": "vin_service_history",
+            "description": "Query Vehicle Service Information based on VIN",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "vin": {"type": "string", "description": "VIN number up to 17 characters"}
+                },
+                "required": ["vin"]
+            }
+        }
+    ]
+    return jsonify({"tools": tools}), 200
+
+@app.route('/call-tool', methods=['POST'])
+def call_tool():
+    """Call an MCP tool"""
+    data = request.json
+    tool_name = data.get('tool_name')
+    arguments = data.get('arguments', {})
+    
+    if tool_name == 'vin_service_history':
+        result = vin_service_history(**arguments)
+        return jsonify(result), 200
+    else:
+        return jsonify({"error": "Tool not found"}), 404
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
+
+Step 2: Create Dockerfile
+dockerfileFROM python:3.11-slim
+
+WORKDIR /app
+
+# Copy requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Run the application
+CMD ["python", "app.py"]
+Step 3: Create requirements.txt
+txtfastmcp
+flask
+google-cloud-bigquery
+# Add other dependencies from BqVinOuery
+Step 4: Deploy to Cloud Run
+bash# Set your GCP project
+gcloud config set project YOUR_PROJECT_ID
+
+# Build and push container
+gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/vin-mcp-service
+
+# Deploy to Cloud Run
+gcloud run deploy vin-mcp-service \
+  --image gcr.io/YOUR_PROJECT_ID/vin-mcp-service \
+  --platform managed \
+  --region us-central1 \
+  --allow-unauthenticated \
+  --memory 512Mi \
+  --timeout 300
+Step 5: Access from Local Client
+pythonimport requests
+import json
+
+class MCPHttpClient:
+    def __init__(self, base_url):
+        self.base_url = base_url.rstrip('/')
+    
+    def list_tools(self):
+        response = requests.get(f"{self.base_url}/tools")
+        return response.json()
+    
+    def call_tool(self, tool_name, arguments):
+        response = requests.post(
+            f"{self.base_url}/call-tool",
+            json={"tool_name": tool_name, "arguments": arguments}
+        )
+        return response.json()
+
+# Usage
+client = MCPHttpClient("https://vin-mcp-service-XXXXX.run.app")
+
+# List tools
+tools = client.list_tools()
+print(f"Available tools: {tools}")
+
+# Call tool
+result = client.call_tool("vin_service_history", {"vin": "1HGBH41JXMN109186"})
+print(f"Result: {result}")

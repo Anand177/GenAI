@@ -1,62 +1,47 @@
 from dotenv import load_dotenv
-import os
-import sys
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.memory import ConversationBufferMemory
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_classic.memory import ConversationBufferMemory
+from langchain_classic.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
+import os
 
-# --- 1. Setup and Initialization ---
+
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Initialize the Gemini Chat Model
-try:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        temperature=0.7
-    )
-    print("Gemini model initialized successfully.")
-except Exception as e:
-    print(f"FATAL ERROR: Failed to initialize Gemini Chat. Error: {e}")
-    sys.exit(1)
+llm = ChatGoogleGenerativeAI(
+    model="gemini-flash-latest",
+    temperature=0.7
+)
+print("Gemini model initialized successfully.")
 
-# Initialize the Memory component
-# This stores the conversation history in memory.
 memory = ConversationBufferMemory(
     memory_key="chat_history", 
     return_messages=True  # Ensure messages are returned as Message objects
 )
 
-# --- 2. Define the Prompt Template ---
-
 # Use a MessagesPlaceholder to include the chat history from the memory component.
-# This ensures the model receives the full conversation context.
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful and friendly assistant named GeminiBot. Keep your answers concise and conversational."),
+    ("system", """You are a helpful and friendly assistant interacting with 6 year old Indian kid named Anvith.
+        Keep your answers engaging, interesting and conversational."""),
     MessagesPlaceholder(variable_name="chat_history"), 
     ("user", "{input}")
 ])
-
-# --- 3. Build the LCEL Chain ---
 
 # A Chain of Runnables is used to process the input through several steps:
 
 # 3.1. Load Memory: This Runnable retrieves the chat history from the memory component.
 # The `RunnablePassthrough` here ensures that the original input is also passed down.
-chat_chain_with_memory = (
-    RunnablePassthrough.assign(
-        # Load the chat_history from the memory component
+chat_chain_with_memory = (RunnablePassthrough.assign(
         chat_history=lambda x: memory.load_memory_variables({})['chat_history']
     )
     | prompt          # 3.2. Pass context and input to the Prompt Template
     | llm             # 3.3. Invoke the Gemini LLM
-    | StrOutputParser() # 3.4. Parse the AI's Message object into a simple string
+    | StrOutputParser()
 )
-
-# --- 4. Interactive Chat Loop ---
 
 def run_chat():
     """Starts the interactive console chat loop."""

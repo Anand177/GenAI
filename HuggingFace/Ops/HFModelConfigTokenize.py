@@ -11,8 +11,8 @@ baseBertModel = BertModel(config=bertBaseConfig)
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 #print(tokenizer)
 
-inputText = "The Quick brown fox jumps over the lazy dog. "
-#inputText = "This is authored by Anand Vasantharajan"
+#inputText = "The Quick brown fox jumps over the lazy dog. "
+inputText = "This is authored by Anand Vasantharajan"
 print("Input Text: ", inputText)
 
 #Split sentence into tokens (word tokenizer - Each word is considered as Token)
@@ -34,7 +34,6 @@ print("Tensor Text: ", tensorText)
 #Convert input text to tensor based on PyTorch ('pt' => PyTorch)
 tensorText = tokenizer(inputText, return_tensors='pt') 
 print("Tensor Text: ", tensorText)
-
 
 with torch.no_grad():
     outputs = baseBertModel(**tensorText)
