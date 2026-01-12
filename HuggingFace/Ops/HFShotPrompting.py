@@ -5,7 +5,6 @@ from huggingface_hub import InferenceClient
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 
 HF_API_KEY=os.getenv("HUGGINGFACEHUB_API_TOKEN")
-print(HF_API_KEY)
 
 client = InferenceClient(api_key=HF_API_KEY)
 model_name = "openai/gpt-oss-20b"
