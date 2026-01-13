@@ -95,5 +95,3 @@ print(f"Next Node to be executed -> {next_node}")
 statInteruptGraphCompiled.update_state(config=config_skip, values=None, as_node="node_b")
 response=statInteruptGraphCompiled.invoke(None, config=config_skip)  # Skipping to Node C
 print(response)
-
-
