@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from operator import itemgetter
 
-from IPython.display import JSON
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableParallel
 from langchain_google_genai import GoogleGenerativeAI

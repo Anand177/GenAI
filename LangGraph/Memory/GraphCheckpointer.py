@@ -66,7 +66,7 @@ print(snapshot)
 print_snapshot(snapshot)
 
 # Print Full History
-history=list(chckpt_graph_compiled.get_state_history(config))
+history=list(chckpt_graph_compiled.get_state_history(config))   # Get state History gets checkpoints
 print_history(history)
 
 # Checkout Snapshot @ Step 1
@@ -75,7 +75,7 @@ print_snapshot(selected_state)
 
 # Update graph state with new value and execute
 new_config=chckpt_graph_compiled.update_state(selected_state.config, values={'inp':'Test'})
-result = chckpt_graph_compiled.invoke(None, config=new_config)
+result = chckpt_graph_compiled.invoke(None, config=new_config)  # Update Graph and execute from new checkpoint
 print(result)
 
 history2=list(chckpt_graph_compiled.get_state_history(new_config))
