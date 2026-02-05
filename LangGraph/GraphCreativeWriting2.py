@@ -4,8 +4,9 @@ from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import START, END, StateGraph
-from langgraph.types import Send
+from langgraph.types import interrupt, Send
 from pydantic import BaseModel, Field
 from typing import Annotated, List, TypedDict
 
@@ -241,6 +242,9 @@ def assign_path_gen_workers(state: GenState) -> GenState:
 def plan_judge_node(state: GenState) -> GenState:
     
     # Printing Generated Learning Plans
+    print(f"\n{'='*60}")
+    print("🙋 User selecting the best plan ")
+    print(f"{'='*60}\n")
     for plan in state["plan_list"]:
         print(f"{'='*60}")
         print(f"📋 PLAN {plan.model_name}")
@@ -288,8 +292,9 @@ def path_judge_node(state: GenState) -> GenState:
 
     return {"best_path": voted_path_response}
 
-
+memory=MemorySaver()
 graph = StateGraph(GenState)
+
 # Add Workers
 graph.add_node("orchestrator_node", orchestrator_node)
 graph.add_node("plan_gen_node", plan_gen_node)
@@ -305,7 +310,8 @@ graph.add_conditional_edges("plan_judge_node", assign_path_gen_workers, ["path_g
 graph.add_edge("path_gen_node", "path_judge_node")
 graph.add_edge("path_judge_node", END)
 
-graph_compiled = graph.compile()
+graph_compiled = graph.compile(checkpointer=memory)
+thread_config= {"configurable": {"thread_id" : 1}}
 response=graph_compiled.invoke({"num_workers": 3})
 
 print(response)

@@ -7,7 +7,6 @@ from langchain_openai import ChatOpenAI
 from langchain_tavily.tavily_search import TavilySearch
 
 import os
-import json
 
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")

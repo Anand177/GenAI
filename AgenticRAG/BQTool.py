@@ -95,7 +95,7 @@ try:
     get_table_schema(bq_toolkit)
     run_query(bq_toolkit)
 
-    natural_language_query="Get details of Anand"
+    natural_language_query="Get details of Anand from test_table"
     run_agent_query(bq_toolkit, natural_language_query)
 
 

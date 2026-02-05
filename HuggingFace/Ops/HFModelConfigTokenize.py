@@ -12,7 +12,7 @@ tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 #print(tokenizer)
 
 #inputText = "The Quick brown fox jumps over the lazy dog. "
-inputText = "This is authored by Anand Vasantharajan"
+inputText = "This is authored by Anand Vasantharajan sant hara jan"
 print("Input Text: ", inputText)
 
 #Split sentence into tokens (word tokenizer - Each word is considered as Token)
