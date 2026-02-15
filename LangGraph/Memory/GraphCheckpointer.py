@@ -3,7 +3,6 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.types import StateSnapshot
 from typing import List, TypedDict, Annotated
 
-
 import random, string
 
 def append_to_list(current: List[str], new: List[str]) -> List[str]:

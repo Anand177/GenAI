@@ -16,7 +16,6 @@ response= llm.invoke("Who is the PM of UK")
 print(response.content)
 
 
-
 """
 llm = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY, max_completion_tokens=20)
 response= llm.invoke("Write a poem about sun in english for minimum of 8 lines and not more than 100 words")
