@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
-from langchain_classic.agents import AgentExecutor, create_react_agent
-from langchain_classic.prompts import PromptTemplate
+from langchain_core.agents import AgentExecutor, create_react_agent
+from langchain_core.prompts import PromptTemplate
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_openai import ChatOpenAI

@@ -1,9 +1,9 @@
 #Refer ReactGraph.ipynb
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.tools import tool
-from langchain.agents import create_agent
+from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
@@ -34,12 +34,13 @@ class MathResult(BaseModel):
     explanation: str
 
 chat_model = init_chat_model("gpt-4o-mini")
-agent = create_agent(model=chat_model, tools=[add, subtract, multiply],
-            system_prompt=prompt, response_format=MathResult, debug=False)
+agent = create_react_agent(model=chat_model, tools=[add, subtract, multiply],
+            response_format=MathResult, debug=False)
 
 #Invoke agent
 def invoke_agent(agent, human_message):
-    input_state={"messages" : [HumanMessage(content=human_message)]}
+    input_state={"messages" : [SystemMessage(content=(prompt)),
+        HumanMessage(content=human_message)]}
     response = agent.invoke(input_state)
     return response
 

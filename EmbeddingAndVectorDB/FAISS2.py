@@ -1,11 +1,12 @@
 from dotenv import load_dotenv
 
-from langchain_classic.chains.retrieval_qa.base import RetrievalQA
-from langchain_classic.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains.retrieval import create_retrieval_chain
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import FAISS
-from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, GoogleGenerativeAI
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 import os
 
@@ -33,7 +34,7 @@ split_docs = text_splitter.split_documents(docs)
 
 print(len(split_docs))
 
-embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004",
+embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001",
                     google_api_key=GOOGLE_API_KEY)
 library=FAISS.from_documents(split_docs,embeddings)
 
@@ -54,33 +55,41 @@ print(f"Question -> {q1}")
 print(ans)
 
 
-llm = GoogleGenerativeAI(
-    model="gemini-flash-latest",
-    temperature=0.7
+llm = GoogleGenerativeAI(model="gemini-flash-latest", temperature=0.7)
+system_prompt=("Use the given context to answer the question. "
+    "If you don't know the answer, say you don't know. "
+    "Context: {context}"
+)
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", system_prompt),
+        ("human", "{input}"),
+    ]
 )
 
 retriever = library.as_retriever()
-qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
+question_answer_chain = create_stuff_documents_chain(llm, prompt)
+qa_chain = create_retrieval_chain(retriever, question_answer_chain)
 
 retriever_q = "What is the most successful Starwars movie"
 print(f"Question -> {retriever_q}")
-results = qa.invoke(retriever_q)
+results = qa_chain.invoke({"input": retriever_q})
 print(results)
 
 retriever_q = "Who killed Padmé"
 print(f"Question -> {retriever_q}")
-results = qa.invoke(retriever_q)
+results = qa_chain.invoke({"input": retriever_q})
 print(results)
 
 retriever_q = "Who is Anakin Skywalker"
 print(f"Question -> {retriever_q}")
-results = qa.invoke(retriever_q)
+results = qa_chain.invoke({"input": retriever_q})
 print(results)
 
 
 retriever_q = "Who is jack Sparrow"
 print(f"Question -> {retriever_q}")
-results = qa.invoke(retriever_q)
+results = qa_chain.invoke({"input": retriever_q})
 print(results)
 
 """

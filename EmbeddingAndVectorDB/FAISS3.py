@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-from langchain_classic.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 import faiss
 import numpy as np
@@ -10,7 +10,7 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 
-model_name="models/text-embedding-004"
+model_name="models/gemini-embedding-001"
 embeddings_model = GoogleGenerativeAIEmbeddings(model=model_name)
 
 def print_query_result(index_faiss):

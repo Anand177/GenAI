@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
-from langchain_classic.evaluation import load_evaluator
+from langchain.evaluation import load_evaluator
 
 import os
 

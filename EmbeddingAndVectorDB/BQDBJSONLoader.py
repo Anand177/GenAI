@@ -19,7 +19,7 @@ dataset_id = "GenAi"
 table_id = "personal_json"
 
 full_table_id = f"{project_id}.{dataset_id}.{table_id}"
-VECTOR_MODEL = "text-embedding-004"
+VECTOR_MODEL = "models/gemini-embedding-001"
 
 JSON_path = "C:/Learning/Python/GenAI/EmbeddingAndVectorDB/PersonalInfo.JSON"
 embeddings_model = GoogleGenerativeAIEmbeddings(

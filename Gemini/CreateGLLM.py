@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAI
 import os
-import sys
 
 # Only for customizing model creation for Google Generative AI
 custom_config = {

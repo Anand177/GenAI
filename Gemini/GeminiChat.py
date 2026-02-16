@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_classic.memory import ConversationBufferMemory
-from langchain_classic.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.chat_history import InMemoryChatMessageHistory
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
@@ -18,29 +19,30 @@ llm = ChatGoogleGenerativeAI(
 )
 print("Gemini model initialized successfully.")
 
-memory = ConversationBufferMemory(
-    memory_key="chat_history", 
-    return_messages=True  # Ensure messages are returned as Message objects
-)
+store={}
+def get_session_history(session_id: str):
+    if session_id not in store:
+        store[session_id] = InMemoryChatMessageHistory()
+    return store[session_id]
 
 # Use a MessagesPlaceholder to include the chat history from the memory component.
 prompt = ChatPromptTemplate.from_messages([
-    ("system", """You are a helpful and friendly assistant interacting with 6 year old Indian kid named Anvith.
+    ("system", """You are a helpful and friendly assistant interacting with 6 year old Anvith.
         Keep your answers engaging, interesting and conversational."""),
     MessagesPlaceholder(variable_name="chat_history"), 
     ("user", "{input}")
 ])
+chain =prompt | llm | StrOutputParser()
 
 # A Chain of Runnables is used to process the input through several steps:
 
 # 3.1. Load Memory: This Runnable retrieves the chat history from the memory component.
 # The `RunnablePassthrough` here ensures that the original input is also passed down.
-chat_chain_with_memory = (RunnablePassthrough.assign(
-        chat_history=lambda x: memory.load_memory_variables({})['chat_history']
-    )
-    | prompt          # 3.2. Pass context and input to the Prompt Template
-    | llm             # 3.3. Invoke the Gemini LLM
-    | StrOutputParser()
+chat_chain_with_memory = RunnableWithMessageHistory(
+    chain,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="chat_history",
 )
 
 def run_chat():
@@ -65,17 +67,11 @@ def run_chat():
 
             # 1. Invoke the Chain
             # The input dictionary only needs the 'input' key. The chat_history is loaded internally.
-            response = chat_chain_with_memory.invoke({"input": user_input})
+            response = chat_chain_with_memory.invoke({"input": user_input},
+                            config={"configurable": {"session_id": "anvith_session_1"}})
 
             # 2. Print the Response
             print(f"[GeminiBot]: {response}\n")
-
-            # 3. Save Context (Crucial for memory)
-            # The memory needs to be explicitly saved after each turn.
-            memory.save_context(
-                {"input": user_input},
-                {"output": response}
-            )
 
         except KeyboardInterrupt:
             print("\nSession interrupted by user. Goodbye!")

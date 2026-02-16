@@ -17,7 +17,7 @@ dataset_id="GenAi"
 table_id="text_embeddings"
 
 full_table_id=f"{project_id}.{dataset_id}.{table_id}"
-VECTOR_MODEL = "text-embedding-004" # Google's embedding model for BQ
+VECTOR_MODEL = "models/gemini-embedding-001"  # Google's embedding model for BQ
 
 corpus=[
   "A man is eating food.", "A man is eating a piece of bread.",

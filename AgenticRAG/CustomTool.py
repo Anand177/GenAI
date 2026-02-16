@@ -1,5 +1,5 @@
 from langchain_core.tools import tool
-from langchain_classic.tools.base import StructuredTool
+from langchain_core.tools import StructuredTool
 
 @tool
 def multiply_tool(a: int, b:int) -> int:

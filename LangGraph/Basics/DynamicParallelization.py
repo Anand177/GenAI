@@ -58,6 +58,6 @@ graph.add_edge("worker_processor_node", "aggregator_node")
 graph.add_edge("aggregator_node", END)
 
 graph_compiled = graph.compile()
-response=graph_compiled.invoke({"num_workers" : 4})
+response=graph_compiled.invoke({"num_workers" : 3})
 
 print(response)

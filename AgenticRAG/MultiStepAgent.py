@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-from langchain_classic.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_google_genai import GoogleGenerativeAI
