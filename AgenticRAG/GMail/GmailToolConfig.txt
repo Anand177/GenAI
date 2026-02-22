@@ -1,0 +1,5 @@
+1. Read https://developers.google.com/workspace/gmail/api/quickstart/python
+2. Enabled GMail API in https://console.cloud.google.com/apis/enableflow;apiid=gmail.googleapis.com?project=gen-lang-client-0398817262
+3. Create OAuth Client https://console.cloud.google.com/auth/clients?project=gen-lang-client-0398817262
+4. uv add google-api-python-client google-auth-oauthlib google-auth-httplib2
+5. Add test user @ https://console.cloud.google.com/auth/audience?chat=true&project=gen-lang-client-0398817262 
