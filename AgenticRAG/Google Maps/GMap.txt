@@ -1,0 +1,15 @@
+GMail tool configuration
+1. Read https://developers.google.com/workspace/gmail/api/quickstart/python
+2. Enabled GMail API in https://console.cloud.google.com/apis/enableflow;apiid=gmail.googleapis.com?project=gen-lang-client-0398817262
+3. Create OAuth Client https://console.cloud.google.com/auth/clients?project=gen-lang-client-0398817262
+4. uv add google-api-python-client google-auth-oauthlib google-auth-httplib2 beautifulsoup4
+5. Add test user @ https://console.cloud.google.com/auth/audience?chat=true&project=gen-lang-client-0398817262 
+
+In Addition to above,
+1. uv add googlemaps
+2. Goto https://console.cloud.google.com/apis/library?project=gen-lang-client-0398817262 and enable the below APIs
+    a. Places API (https://console.cloud.google.com/apis/api/places-backend.googleapis.com/overview?project=gen-lang-client-0398817262)
+    b. Directions API
+    c. Distance Matrix API
+    d. Air Quality API (Optional)
+    e. Weather API (Optional)
