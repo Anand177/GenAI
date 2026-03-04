@@ -13,3 +13,4 @@ In Addition to above,
     c. Distance Matrix API
     d. Air Quality API (Optional)
     e. Weather API (Optional)
+3. Goto https://console.cloud.google.com/google/maps-apis/credentials?project=gen-lang-client-0398817262 and create API Key

@@ -15,12 +15,12 @@ gmail_credentials =get_gmail_credentials(token_file="C:\\Learning\\AI\\Key\\toke
             client_secrets_file="C:\\Learning\\AI\\Key\\GAPI_OAuth.json")
 gmail_toolkit=GmailToolkit(api_resource=build_resource_service(credentials=gmail_credentials))
 
-for tool in gmail_toolkit.get_tools():
+"""for tool in gmail_toolkit.get_tools():
     print(f"Name ->{tool.name}")
     print(f"Desc -> {tool.description}")
     print(f"Args -> {tool.args_schema}")
     print(f"Meta -> {tool.metadata}")
-
+"""
 
 llm=ChatGoogleGenerativeAI(model="gemini-flash-latest", temperature=0)
 
@@ -28,16 +28,31 @@ agent=initialize_agent(tools=gmail_toolkit.get_tools(),
             llm=llm,
             agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True)
+def main():
+    resp1 = agent.run("List Sender and Subject of all Unread mails in")
+    print(resp1)
 
-resp1 = agent.run("List Sender and Subject of all Unread mails in Inbox")
-print(resp1)
+    resp2 = agent.run("""Summarize last 5 mails received from anand.vasantharajan@gmail.com.
+    Summarization for each mail shouldn't be more than 3 sentences""")
+    print(resp2)
 
-resp2 = agent.run("""Summarize last 5 mails received from anand.vasantharajan@gmail.com.
-Summarization for each mail shouldn't be more than 3 sentences""")
-print(resp2)
+    resp3 = agent.run("""Check for unread email from anand.vasantharajan@gmail.com.
+    If present, compose response from Automobile expert perspective. 
+    Mention you don't know for non automobile questions.
+    Just compose your response and don't send mail""")
+    print(resp3)
 
-resp3 = agent.run("""Check for unread email from anand.vasantharajan@gmail.com.
-If present, compose response from Automobile expert perspective. 
-Mention you don't know for non automobile questions.
-Just compose your response and don't send mail""")
-print(resp3)
+
+def send_mail(content: str, recepient : str = "anandmynameis@gmail.com", 
+              subject : str="User Question to Answer"):
+    
+    request=f"""Compose and Send the below mail
+To: {recepient}
+Subject: {subject}
+Content: {content}
+"""
+    resp = agent.run(request)
+    print(resp)
+
+if __name__ == "__main__":
+    main()
