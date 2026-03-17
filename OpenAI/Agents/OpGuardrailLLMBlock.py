@@ -20,7 +20,6 @@ Check if the output contains personal or sensitive information about a person.
 Disallowed content:
 - Phone numbers, emails, addresses
 - Exact age, DOB
-- Any sensitive personal data
 
 Allowed:
 - Public, high-level info about well-known public figures (no private details)
@@ -54,18 +53,13 @@ search_agent_wop = Agent(name="Search agent", instructions=instructions, tools=[
 
 async def run_agent_workflow_wop():
     with trace("OP Guardrail check"):
-        result = await Runner.run(search_agent_wop, "Elephant")
+        result = await Runner.run(search_agent_wop, "Mr Y")
 
         
     print("-" * 50)
     print("Workflow agent complete")
     print("-" * 50)
-# As trip wire isnt triggered, output is manually fetched 
-    if result.output_guardrail_results and len(result.output_guardrail_results) > 0:
-        sanitized_output = result.output_guardrail_results[0].output
-        print(f"Final Output: {sanitized_output}")
-    else:
-        print(f"Final Output: {result.final_output}")
+    print(f"Final Output: {result.final_output}")
 
 if __name__ == "__main__":
     asyncio.run(run_agent_workflow_wop())
