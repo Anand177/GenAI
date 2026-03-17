@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from langchain_classic.agents import AgentExecutor, create_structured_chat_agent
+from langchain.agents import AgentExecutor, create_structured_chat_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder, PromptTemplate
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI

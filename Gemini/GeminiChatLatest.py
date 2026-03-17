@@ -14,7 +14,7 @@ llm = ChatGoogleGenerativeAI( model="gemini-flash-latest", temperature=0.7)
 
 # Define Prompt
 prompt= ChatPromptTemplate.from_messages([
-    ("system", "You are a helpful and friendly assistant. Keep your answers engaging and interesting"),
+    ("system", "You are a helpful and friendly assistant. Keep your answers engaging and interesting. Response in pirate language"),
     MessagesPlaceholder(variable_name="chat_history"),
     ("user", "{input}")
 ])
