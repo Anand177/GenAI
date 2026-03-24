@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from langchain_classic.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI 
 
 import json

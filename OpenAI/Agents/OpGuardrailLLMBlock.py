@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
-from agents import Agent, ModelSettings, Runner, function_tool, trace, OutputGuardrail, GuardrailFunctionOutput, OutputGuardrailResult
+from agents import Agent, ModelSettings, Runner, function_tool, trace
+from agents import OutputGuardrail, GuardrailFunctionOutput, OutputGuardrailTripwireTriggered
 
-import asyncio, re
+import asyncio
 
 load_dotenv("C:\\Learning\\AI\\Key\\Api-key.txt")
 
@@ -52,14 +53,25 @@ search_agent_wop = Agent(name="Search agent", instructions=instructions, tools=[
 
 
 async def run_agent_workflow_wop():
-    with trace("OP Guardrail check"):
-        result = await Runner.run(search_agent_wop, "Mr Y")
+    try:
+        with trace("OP Guardrail check"):
+            result = await Runner.run(search_agent_wop, "Mr X")
 
-        
-    print("-" * 50)
-    print("Workflow agent complete")
-    print("-" * 50)
-    print(f"Final Output: {result.final_output}")
+        print("-" * 50)
+        print("Workflow agent complete")
+        print("-" * 50)
+        print(f"Final Output: {result.final_output}")
+
+    except OutputGuardrailTripwireTriggered as e:
+        print("-" * 50)
+        print("Output Guardrail Triggered")
+        print("-" * 50)
+        gr_result=e.guardrail_result
+
+        print(f"Blocked Output : {gr_result.output.output_info}")
+        print("Output was blocked due to policy violation")
+
+    
 
 if __name__ == "__main__":
     asyncio.run(run_agent_workflow_wop())
