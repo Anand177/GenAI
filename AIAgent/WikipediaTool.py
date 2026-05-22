@@ -1,10 +1,14 @@
 # pip show wikipedia
+import wikipedia
+
 from langchain_community.tools import WikipediaQueryRun
 from langchain_community.utilities import WikipediaAPIWrapper
 from langchain_core.tools import Tool
 
-api_wrapper = WikipediaAPIWrapper(doc_content_chars_max=50, top_k_results=3)
-query="LLM"
+wikipedia.set_user_agent("AgentScript/1.0 (contact: anandmynameis@gmail.com)")
+
+api_wrapper = WikipediaAPIWrapper(doc_content_chars_max=50, top_k_results=3, )
+query="Deep Learning"
 
 response=api_wrapper.load(query=query)
 print(response)
@@ -16,7 +20,7 @@ wiki_tool=Tool(
     func=api_wrapper.load
 )
 print("Tool with Wikipedia Wrapper")
-response=wiki_tool.invoke({"query" : query})
+response=wiki_tool.invoke(query)
 print(response)
 
 # Built-in Wikipedia Tool class

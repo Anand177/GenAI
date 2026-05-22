@@ -15,12 +15,11 @@ gmail_credentials =get_gmail_credentials(token_file="C:\\Learning\\AI\\Key\\toke
             client_secrets_file="C:\\Learning\\AI\\Key\\GAPI_OAuth.json")
 gmail_toolkit=GmailToolkit(api_resource=build_resource_service(credentials=gmail_credentials))
 
-"""for tool in gmail_toolkit.get_tools():
+for tool in gmail_toolkit.get_tools():
     print(f"Name ->{tool.name}")
     print(f"Desc -> {tool.description}")
     print(f"Args -> {tool.args_schema}")
-    print(f"Meta -> {tool.metadata}")
-"""
+
 
 llm=ChatGoogleGenerativeAI(model="gemini-flash-latest", temperature=0)
 

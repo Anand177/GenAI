@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
 from langchain_google_genai import ChatGoogleGenerativeAI  
 from langchain_tavily.tavily_search import TavilySearch
 
@@ -30,7 +29,7 @@ def run_single_step_agent(query: str):
 
 
 # Test 1 --> Test with 1 tool
-query  = "Who is Anand Vasantharajan"
+query  = "What is Deep Learning"
 response = run_single_step_agent(query)
 print(f"Query:: {response['input']}")
 print(f"Search Result:: {response['search_results']}")

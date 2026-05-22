@@ -28,7 +28,7 @@ print(resp2)
 resp3=agent.run("Get exact GPS Coordinates of Chennai Valluvarkottam")
 print(resp3)
 
-resp4=agent.run("Get me today's weather forecast for Vellore. Do I need to carry umbrella")
+resp4=agent.run("Get me today's weather forecast for Ooty. Do I need to carry umbrella")
 print(resp4)
 
 resp4=agent.run("Get me today's AQI in Chennai and compare with Delhi's AQI")

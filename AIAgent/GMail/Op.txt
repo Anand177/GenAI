@@ -100,8 +100,8 @@ Thought:I found only 2 emails from anand.vasantharajan@gmail.com. Here are their
 1. **Subject: Help On Learning**
    Anand is requesting a 6-month learning plan for Generative AI on GCP and kickboxing. He also seeks advice on choosing between a Honda CB350 Highness and a Royal Enfield Meteor 350 motorcycle. He notes that the recommendation should suit his physical build of 174 cm and 67 kg.
 
-2. **Subject: WhatsApp Chat with Thunaivi**
-   This email contains an attached text file titled "WhatsApp Chat with Thunaivi.txt". It appears to be a simple export of a chat history with no additional message in the body.
+2. **Subject: WhatsApp Chat Dump**
+   This email contains an attached text file titled "WhatsApp Chat Dump.txt". It appears to be a simple export of a chat history with no additional message in the body.
 
 > Finished chain.
 I found only 2 emails from anand.vasantharajan@gmail.com. Here are their summaries:
@@ -109,8 +109,9 @@ I found only 2 emails from anand.vasantharajan@gmail.com. Here are their summari
 1. **Subject: Help On Learning**
    Anand is requesting a 6-month learning plan for Generative AI on GCP and kickboxing. He also seeks advice on choosing between a Honda CB350 Highness and a Royal Enfield Meteor 350 motorcycle. He notes that the recommendation should suit his physical build of 174 cm and 67 kg.
 
-2. **Subject: WhatsApp Chat with Thunaivi**
-   This email contains an attached text file titled "WhatsApp Chat with Thunaivi.txt". It appears to be a simple export of a chat history with no additional message in the body.
+2. **Subject: WhatsApp Chat Dump**
+   This email contains an attached text file titled "WhatsApp Chat Dump.txt". It appears to be a simple export of a chat history with no additional message in the body.
+
 
 
 > Entering new AgentExecutor chain...

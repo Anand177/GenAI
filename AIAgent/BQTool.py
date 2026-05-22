@@ -19,7 +19,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="C:/Learning/AI/Key/gen-lang-client
 project_id="gen-lang-client-0398817262"
 dataset_id="GenAi"
 table_name="test_table"
-query=f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}` WHERE id = 123"
+query=f"SELECT * FROM `{project_id}.{dataset_id}.{table_name}` WHERE id = 101"
 
 bq_uri=f"bigquery://{project_id}/{dataset_id}"
 
@@ -95,7 +95,7 @@ try:
     get_table_schema(bq_toolkit)
     run_query(bq_toolkit)
 
-    natural_language_query="Get details of Anand from test_table"
+    natural_language_query="Get details of Engineers from test_table"
     run_agent_query(bq_toolkit, natural_language_query)
 
 

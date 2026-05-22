@@ -9,7 +9,7 @@ tavily_tool = TavilySearch(include_raw_content=True,
                                   search_depth="basic", 
                                   max_results=3)
 
-query="Who is Anand vasantharajan?"
+query="What is Deep Learning"
 results=tavily_tool.run(query)
 
 print(results)
